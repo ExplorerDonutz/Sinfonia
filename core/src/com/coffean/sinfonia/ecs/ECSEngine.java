@@ -83,7 +83,7 @@ public class ECSEngine extends PooledEngine {
         entity.add(box2DComponent);
 
         // Transform
-        final TransformComponent transformComponent = this.createComponent(TransformComponent.class);
+        final TransformComponent transformComponent = this.createComponent(TransformComponent.class);git
         // Z defines draw order (0 is first drawn)
         transformComponent.scale.set(1, 1);
         transformComponent.position.set(posX, posY, drawOrder);
