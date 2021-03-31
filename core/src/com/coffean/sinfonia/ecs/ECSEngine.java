@@ -12,8 +12,7 @@ import com.coffean.sinfonia.ecs.systems.*;
 import com.coffean.sinfonia.input.InputManager;
 import com.coffean.sinfonia.loader.Assets;
 
-import static com.coffean.sinfonia.utils.Constants.BIT_BOUNDARY;
-import static com.coffean.sinfonia.utils.Constants.BIT_PLAYER;
+import static com.coffean.sinfonia.utils.Constants.*;
 
 public class ECSEngine extends PooledEngine {
     private final BodyFactory bodyFactory;
@@ -39,7 +38,7 @@ public class ECSEngine extends PooledEngine {
         final Entity player = this.createEntity();
         // Box2D
         final Box2DComponent box2DComponent = this.createComponent(Box2DComponent.class);
-        box2DComponent.body = bodyFactory.makeBox(posX, posY, width, height, BodyDef.BodyType.DynamicBody, true, BIT_PLAYER, BIT_BOUNDARY);
+        box2DComponent.body = bodyFactory.makeBox(posX, posY, width, height, BodyDef.BodyType.DynamicBody, true, BIT_PLAYER, (short) (BIT_ENTITY | BIT_BOUNDARY));
         box2DComponent.body.setUserData(player);
         player.add(box2DComponent);
 
@@ -72,5 +71,24 @@ public class ECSEngine extends PooledEngine {
         player.add(stateComponent);
 
         this.addEntity(player);
+    }
+
+    public void createAshley(int posX, int posY, int width, int height, int drawOrder) {
+        final Entity entity = this.createEntity();
+
+        // Box2D
+        final Box2DComponent box2DComponent = this.createComponent(Box2DComponent.class);
+        box2DComponent.body = bodyFactory.makeBox(posX, posY, width, height, BodyDef.BodyType.DynamicBody, true, BIT_ENTITY, (short) (BIT_PLAYER | BIT_BOUNDARY));
+        box2DComponent.body.setUserData(entity);
+        entity.add(box2DComponent);
+
+        // Transform
+        final TransformComponent transformComponent = this.createComponent(TransformComponent.class);
+        // Z defines draw order (0 is first drawn)
+        transformComponent.scale.set(1, 1);
+        transformComponent.position.set(posX, posY, drawOrder);
+        entity.add(transformComponent);
+
+        this.addEntity(entity);
     }
 }

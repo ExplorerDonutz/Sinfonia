@@ -32,6 +32,7 @@ public class GameScreen implements Screen, GameKeyInputListener {
     @Override
     public void show() {
         ecsEngine.createPlayer(100, 100, 32, 32, 0);
+        ecsEngine.createAshley(150, 150, 32, 32, 1);
     }
 
     @Override

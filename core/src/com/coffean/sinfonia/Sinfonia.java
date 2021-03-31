@@ -20,7 +20,6 @@ public class Sinfonia extends Game {
     private final static String TAG = "Sinfonia";
     private SplashWorker splashWorker;
     private SpriteBatch batch;
-    private OrthographicCamera camera;
     private Assets assetManager;
     private PreferencesScreen preferencesScreen;
     private MainMenuScreen menuScreen;
@@ -35,7 +34,6 @@ public class Sinfonia extends Game {
         Box2D.init();
         assetManager = new Assets();
         batch = new SpriteBatch();
-        camera = new OrthographicCamera();
         preferences = new GamePreferences();
         profiler = new GLProfiler(Gdx.graphics);
         profiler.enable(); // Enable for debugging
@@ -102,10 +100,6 @@ public class Sinfonia extends Game {
 
     public SpriteBatch getBatch() {
         return batch;
-    }
-
-    public OrthographicCamera getCamera() {
-        return camera;
     }
 
     public void setSplashWorker(SplashWorker splashWorker) {

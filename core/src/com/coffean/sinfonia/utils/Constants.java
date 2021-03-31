@@ -18,4 +18,5 @@ public final class Constants {
     // Filter bits
     public static final short BIT_PLAYER = 1 << 0;
     public static final short BIT_BOUNDARY = 1 << 1;
+    public static final short BIT_ENTITY = 1 << 2;
 }

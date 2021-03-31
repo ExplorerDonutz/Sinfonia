@@ -23,7 +23,7 @@ public class TiledObjectUtil {
             fixtureDef.density = 1.0f;
             fixtureDef.shape = shape;
             fixtureDef.filter.categoryBits = Constants.BIT_BOUNDARY;
-            fixtureDef.filter.maskBits = Constants.BIT_PLAYER;
+            fixtureDef.filter.maskBits = Constants.BIT_PLAYER | Constants.BIT_ENTITY;
             body.createFixture(fixtureDef);
             shape.dispose();
         }
