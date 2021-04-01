@@ -8,7 +8,7 @@ import com.coffean.sinfonia.ecs.mappers.Mapper;
 import java.util.Comparator;
 
 public class ZComparator implements Comparator<Entity> {
-    private ComponentMapper<TransformComponent> transComponent;
+    private final ComponentMapper<TransformComponent> transComponent;
 
     public ZComparator() {
         transComponent = Mapper.transformCmpMapper;

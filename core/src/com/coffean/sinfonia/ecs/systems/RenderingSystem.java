@@ -34,14 +34,14 @@ public class RenderingSystem extends SortedIteratingSystem implements Disposable
     private final TiledMap map;
     private final OrthogonalTiledMapRenderer mapRenderer;
     private final ExtendViewport viewport;
-    private Comparator<Entity> comparator;
+    private final Comparator<Entity> comparator;
 
     public RenderingSystem(Sinfonia parent, World world) {
         super(Family.all(TransformComponent.class, TextureComponent.class).get(), new ZComparator());
         final Assets assetManager = parent.getAssetManager();
         texComponent = Mapper.textureCmpMapper;
         transComponent = Mapper.transformCmpMapper;
-
+        comparator = new ZComparator();
         //New array for sorting entities
         renderQueue = new Array<>();
 
@@ -75,7 +75,7 @@ public class RenderingSystem extends SortedIteratingSystem implements Disposable
         batch.begin();
 
         //Loop through each entity
-        for (Entity entity : renderQueue) {
+        for (Entity entity : new Array.ArrayIterator<>(renderQueue)) {
             TextureComponent tex = texComponent.get(entity);
             TransformComponent trans = transComponent.get(entity);
 

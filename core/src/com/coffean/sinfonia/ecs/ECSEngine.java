@@ -15,14 +15,13 @@ import com.coffean.sinfonia.loader.Assets;
 import static com.coffean.sinfonia.utils.Constants.*;
 
 public class ECSEngine extends PooledEngine {
-    private final BodyFactory bodyFactory;
-    private final Assets assetManager;
-    private final TextureAtlas playerAtlas;
     public final RenderingSystem renderingSystem;
+    private final BodyFactory bodyFactory;
+    private final TextureAtlas playerAtlas;
 
     public ECSEngine(final World world, final Sinfonia parent, InputManager inputManager) {
         bodyFactory = BodyFactory.getInstance(world);
-        assetManager = parent.getAssetManager();
+        final Assets assetManager = parent.getAssetManager();
         playerAtlas = assetManager.manager.get("entities/atlas/entity.atlas");
         renderingSystem = new RenderingSystem(parent, world);
 
@@ -32,6 +31,7 @@ public class ECSEngine extends PooledEngine {
         this.addSystem(new PlayerCameraSystem(parent, renderingSystem));
         this.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
         this.addSystem(new PlayerMovementSystem(parent, inputManager));
+        this.addSystem(new CollisionSystem());
     }
 
     public void createPlayer(int posX, int posY, int width, int height, int drawOrder) {
@@ -70,6 +70,11 @@ public class ECSEngine extends PooledEngine {
         stateComponent.set(StateComponent.STATE_UP);
         player.add(stateComponent);
 
+        // Collision
+        final CollisionComponent collisionComponent = this.createComponent(CollisionComponent.class);
+        player.add(collisionComponent);
+
+        // Add player to engine
         this.addEntity(player);
     }
 
@@ -83,12 +88,22 @@ public class ECSEngine extends PooledEngine {
         entity.add(box2DComponent);
 
         // Transform
-        final TransformComponent transformComponent = this.createComponent(TransformComponent.class);git
+        final TransformComponent transformComponent = this.createComponent(TransformComponent.class);
         // Z defines draw order (0 is first drawn)
         transformComponent.scale.set(1, 1);
         transformComponent.position.set(posX, posY, drawOrder);
         entity.add(transformComponent);
 
+        // Type
+        final TypeComponent typeComponent = this.createComponent(TypeComponent.class);
+        typeComponent.type = TypeComponent.OTHER;
+        entity.add(typeComponent);
+
+        // Collision
+        final CollisionComponent collisionComponent = this.createComponent(CollisionComponent.class);
+        entity.add(collisionComponent);
+
+        // Adds test entity to engine
         this.addEntity(entity);
     }
 }

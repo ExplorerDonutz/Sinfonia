@@ -35,7 +35,7 @@ public class PhysicsSystem extends IntervalIteratingSystem {
         super.updateInterval();
 
         //Entity Queue
-        for (Entity entity : bodyQueue) {
+        for (Entity entity : new Array.ArrayIterator<>(bodyQueue)) {
             TransformComponent transComponent = Mapper.transformCmpMapper.get(entity);
             Box2DComponent bodyComponent = Mapper.b2DCmpMapper.get(entity);
             Vector2 position = bodyComponent.body.getPosition();

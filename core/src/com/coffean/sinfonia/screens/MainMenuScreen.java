@@ -55,7 +55,7 @@ public class MainMenuScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 stage.addAction(Actions.fadeOut(1));
-                parent.setScreen(new GameScreen(parent));
+                parent.changeScreen(Sinfonia.GAME);
                 dispose();
             }
         });

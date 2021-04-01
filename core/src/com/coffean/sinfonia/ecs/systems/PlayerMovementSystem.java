@@ -96,8 +96,6 @@ public class PlayerMovementSystem extends IteratingSystem implements GameKeyInpu
                 force.y = -1;
                 break;
             default:
-                return;
-
         }
     }
 

@@ -47,6 +47,7 @@ public class BodyFactory {
         boxBodyDef.type = bodyType;
         boxBodyDef.position.x = posx / 2 / PPM;
         boxBodyDef.position.y = posy / 2 / PPM;
+        boxBodyDef.linearDamping = 2.0f;
         boxBodyDef.fixedRotation = fixedRotation;
         //create the body to attach said definition
         Body boxBody = world.createBody(boxBodyDef);
