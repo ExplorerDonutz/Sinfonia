@@ -8,7 +8,6 @@ import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.ControllerMapping;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.math.Vector2;
-import com.coffean.sinfonia.Sinfonia;
 import com.coffean.sinfonia.ecs.components.Box2DComponent;
 import com.coffean.sinfonia.ecs.components.PlayerComponent;
 import com.coffean.sinfonia.ecs.components.StateComponent;
@@ -21,11 +20,9 @@ import com.coffean.sinfonia.input.InputManager;
 public class PlayerMovementSystem extends IteratingSystem implements GameKeyInputListener, ControllerListener {
 
     private final Vector2 force;
-    private Box2DComponent b2DComponent;
     private StateComponent stateComponent;
-    private PlayerComponent playerComponent;
 
-    public PlayerMovementSystem(final Sinfonia parent, InputManager inputManager) {
+    public PlayerMovementSystem(final InputManager inputManager) {
         super(Family.all(PlayerComponent.class).get());
         inputManager.addInputListener(this);
         Controllers.addListener(this);
@@ -34,11 +31,30 @@ public class PlayerMovementSystem extends IteratingSystem implements GameKeyInpu
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        b2DComponent = Mapper.b2DCmpMapper.get(entity);
+        Box2DComponent b2DComponent = Mapper.b2DCmpMapper.get(entity);
         stateComponent = Mapper.stateCmpMapper.get(entity);
-        playerComponent = Mapper.playerCmpMapper.get(entity);
+        PlayerComponent playerComponent = Mapper.playerCmpMapper.get(entity);
 
         b2DComponent.body.setLinearVelocity(force.x * playerComponent.speed, force.y * playerComponent.speed);
+
+        // Use abs to get non negative values to compare
+        if (Math.abs(force.x) > Math.abs(force.y)) {
+            if (force.x < 0) {
+                stateComponent.set(StateComponent.STATE_LEFT);
+            }
+
+            if (force.x > 0) {
+                stateComponent.set(StateComponent.STATE_RIGHT);
+            }
+        } else {
+            if (force.y < 0) {
+                stateComponent.set(StateComponent.STATE_DOWN);
+            }
+
+            if (force.y > 0) {
+                stateComponent.set(StateComponent.STATE_UP);
+            }
+        }
     }
 
     @Override
@@ -66,6 +82,7 @@ public class PlayerMovementSystem extends IteratingSystem implements GameKeyInpu
         final float deadzone = 0.25f;
         final ControllerMapping mapping = controller.getMapping();
         if (axisCode == mapping.axisLeftX) {
+            // Checks to see if the absolute value is in the deadzone
             if (Math.abs(value) < deadzone) {
                 value = 0.0f;
             }
@@ -85,15 +102,19 @@ public class PlayerMovementSystem extends IteratingSystem implements GameKeyInpu
         switch (key) {
             case LEFT:
                 force.x = -1;
+                stateComponent.set(StateComponent.STATE_LEFT);
                 break;
             case RIGHT:
                 force.x = 1;
+                stateComponent.set(StateComponent.STATE_RIGHT);
                 break;
             case UP:
                 force.y = 1;
+                stateComponent.set(StateComponent.STATE_UP);
                 break;
             case DOWN:
                 force.y = -1;
+                stateComponent.set(StateComponent.STATE_DOWN);
                 break;
             default:
         }

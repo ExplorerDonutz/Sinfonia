@@ -28,9 +28,9 @@ public class ECSEngine extends PooledEngine {
         this.addSystem(new AnimationSystem());
         this.addSystem(renderingSystem);
         this.addSystem(new PhysicsSystem(world));
-        this.addSystem(new PlayerCameraSystem(parent, renderingSystem));
+        this.addSystem(new PlayerCameraSystem(renderingSystem));
         this.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
-        this.addSystem(new PlayerMovementSystem(parent, inputManager));
+        this.addSystem(new PlayerMovementSystem(inputManager));
         this.addSystem(new CollisionSystem());
     }
 

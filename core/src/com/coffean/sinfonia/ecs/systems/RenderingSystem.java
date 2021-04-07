@@ -11,7 +11,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.coffean.sinfonia.Sinfonia;
 import com.coffean.sinfonia.ecs.components.TextureComponent;
@@ -24,14 +23,13 @@ import java.util.Comparator;
 
 import static com.coffean.sinfonia.utils.Constants.*;
 
-public class RenderingSystem extends SortedIteratingSystem implements Disposable {
+public class RenderingSystem extends SortedIteratingSystem {
     private final static String TAG = RenderingSystem.class.getSimpleName();
     private final SpriteBatch batch;
     private final Array<Entity> renderQueue;
     private final ComponentMapper<TextureComponent> texComponent;
     private final ComponentMapper<TransformComponent> transComponent;
     private final OrthographicCamera camera;
-    private final TiledMap map;
     private final OrthogonalTiledMapRenderer mapRenderer;
     private final ExtendViewport viewport;
     private final Comparator<Entity> comparator;
@@ -44,13 +42,11 @@ public class RenderingSystem extends SortedIteratingSystem implements Disposable
         comparator = new ZComparator();
         //New array for sorting entities
         renderQueue = new Array<>();
-
         batch = parent.getBatch();
-
         camera = new OrthographicCamera(WIDTH / PPM, HEIGHT / PPM);
         camera.position.set(WIDTH / PPM / SCALE, HEIGHT / PPM / SCALE, 0);
         viewport = new ExtendViewport(camera.viewportWidth, camera.viewportHeight, camera);
-        map = assetManager.manager.get("map/map.tmx");
+        TiledMap map = assetManager.manager.get("map/map.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(map, PIXELS_TO_METERS, batch);
         TiledObjectUtil.parseTiledObjectLayer(world, map.getLayers().get("collision-layer").getObjects());
     }
@@ -70,6 +66,7 @@ public class RenderingSystem extends SortedIteratingSystem implements Disposable
         camera.update();
         batch.setProjectionMatrix(camera.combined);
         batch.enableBlending();
+
         mapRenderer.setView(camera);
         mapRenderer.render();
         batch.begin();
@@ -92,7 +89,9 @@ public class RenderingSystem extends SortedIteratingSystem implements Disposable
 
             batch.draw(tex.region, trans.position.x - originX, trans.position.y - originY, originX, originY, texWidth, texHeight, PixelsToMeters(trans.scale.x), PixelsToMeters(trans.scale.y), trans.rotation);
         }
+
         batch.end();
+
         renderQueue.clear();
     }
 
@@ -107,10 +106,5 @@ public class RenderingSystem extends SortedIteratingSystem implements Disposable
 
     public OrthographicCamera getCamera() {
         return camera;
-    }
-
-    @Override
-    public void dispose() {
-        mapRenderer.dispose();
     }
 }

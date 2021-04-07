@@ -2,9 +2,12 @@ package com.coffean.sinfonia.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.RepeatAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -17,9 +20,9 @@ import com.coffean.sinfonia.loader.Assets;
 public class MainMenuScreen implements Screen {
 
     private final Sinfonia parent;
+    private final Assets assetManager;
     protected Stage stage;
     protected Skin skin;
-    private final Assets assetManager;
 
     public MainMenuScreen(final Sinfonia parent) {
         this.parent = parent;
@@ -33,7 +36,6 @@ public class MainMenuScreen implements Screen {
         ScreenUtils.clear(0, 0, 0, 1);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-
     }
 
     @Override
@@ -78,13 +80,29 @@ public class MainMenuScreen implements Screen {
             }
         });
 
-        root.add(playButton).center().fillX().uniformX();
-        root.row().pad(10, 0, 10, 0);
-        root.add(optionsButton).padRight(10).fillX().uniformX();
+        final Label title = new Label("Sinfonia", skin);
+        title.setFontScale(0.5f);
+
+        root.add(title);
         root.row();
-        root.add(exitButton).padLeft(10).fillX().uniformX();
+        root.add(playButton);
+        root.row().pad(10, 0, 10, 0);
+        root.add(optionsButton);
+        root.row();
+        root.add(exitButton);
 
         stage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(1)));
+
+
+        // Regrettable RGB
+        title.addAction(Actions.repeat(RepeatAction.FOREVER, Actions.sequence(
+                Actions.color(Color.RED, 0.5f),
+                Actions.color(Color.ORANGE, 0.5f),
+                Actions.color(Color.YELLOW, 0.5f),
+                Actions.color(Color.GREEN, 0.5f),
+                Actions.color(Color.CYAN, 0.5f),
+                Actions.color(Color.BLUE, 0.5f),
+                Actions.color(Color.PURPLE, 0.5f))));
     }
 
     @Override
