@@ -63,7 +63,7 @@ public class RenderingSystem extends SortedIteratingSystem {
         //Sorts the render queue based on z index
         renderQueue.sort(comparator);
 
-        camera.update();
+        viewport.apply(false);
         batch.setProjectionMatrix(camera.combined);
         batch.enableBlending();
 
