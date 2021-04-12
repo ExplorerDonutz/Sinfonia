@@ -55,7 +55,7 @@ public class ECSEngine extends PooledEngine {
         // Transform
         final TransformComponent transformComponent = this.createComponent(TransformComponent.class);
         // Z defines draw order (0 is first drawn)
-        //transformComponent.scale.set(1, 1);
+        transformComponent.scale.set(1, 1);
         transformComponent.position.set(posX, posY, drawOrder);
         player.add(transformComponent);
 
@@ -95,7 +95,7 @@ public class ECSEngine extends PooledEngine {
         // Transform
         final TransformComponent transformComponent = this.createComponent(TransformComponent.class);
         // Z defines draw order (0 is first drawn)
-        // transformComponent.scale.set(1, 1);
+        transformComponent.scale.set(1, 1);
         transformComponent.position.set(posX, posY, drawOrder);
         entity.add(transformComponent);
 
