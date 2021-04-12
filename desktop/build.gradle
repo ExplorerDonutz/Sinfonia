@@ -1,4 +1,4 @@
-plugins {id 'org.beryx.runtime' version '1.8.4'}
+plugins { id 'org.beryx.runtime' version '1.8.4' }
 
 sourceCompatibility = 11
 sourceSets.main.java.srcDirs = ["src/"]

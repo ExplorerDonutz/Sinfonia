@@ -2,7 +2,9 @@ package com.coffean.sinfonia.ecs;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.coffean.sinfonia.Sinfonia;
@@ -18,11 +20,13 @@ public class ECSEngine extends PooledEngine {
     public final RenderingSystem renderingSystem;
     private final BodyFactory bodyFactory;
     private final TextureAtlas playerAtlas;
+    private final TextureAtlas ashAtlas;
 
     public ECSEngine(final World world, final Sinfonia parent, InputManager inputManager) {
         bodyFactory = BodyFactory.getInstance(world);
         final Assets assetManager = parent.getAssetManager();
-        playerAtlas = assetManager.manager.get("entities/atlas/entity.atlas");
+        playerAtlas = assetManager.manager.get("entities/player.atlas");
+        ashAtlas = assetManager.manager.get("entities/ashley.atlas");
         renderingSystem = new RenderingSystem(parent, world);
 
         this.addSystem(new AnimationSystem());
@@ -31,6 +35,7 @@ public class ECSEngine extends PooledEngine {
         this.addSystem(new PlayerCameraSystem(renderingSystem));
         this.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
         this.addSystem(new PlayerMovementSystem(inputManager));
+        this.addSystem(new EntityMovementSystem());
         this.addSystem(new CollisionSystem());
     }
 
@@ -50,24 +55,24 @@ public class ECSEngine extends PooledEngine {
         // Transform
         final TransformComponent transformComponent = this.createComponent(TransformComponent.class);
         // Z defines draw order (0 is first drawn)
-        transformComponent.scale.set(1, 1);
+        //transformComponent.scale.set(1, 1);
         transformComponent.position.set(posX, posY, drawOrder);
         player.add(transformComponent);
-
-        // Texture
-        final TextureComponent textureComponent = this.createComponent(TextureComponent.class);
-        textureComponent.region = playerAtlas.findRegion("player");
-        player.add(textureComponent);
 
         // Type
         final TypeComponent typeComponent = this.createComponent(TypeComponent.class);
         typeComponent.type = TypeComponent.PLAYER;
         player.add(typeComponent);
 
+        // Texture
+        final TextureComponent textureComponent = this.createComponent(TextureComponent.class);
+        textureComponent.region = playerAtlas.findRegion("player");
+        player.add(textureComponent);
+
         // State
         final StateComponent stateComponent = this.createComponent(StateComponent.class);
         // Starting state
-        stateComponent.set(StateComponent.STATE_UP);
+        stateComponent.state = StateComponent.STATE_UP;
         player.add(stateComponent);
 
         // Collision
@@ -90,7 +95,7 @@ public class ECSEngine extends PooledEngine {
         // Transform
         final TransformComponent transformComponent = this.createComponent(TransformComponent.class);
         // Z defines draw order (0 is first drawn)
-        transformComponent.scale.set(1, 1);
+        // transformComponent.scale.set(1, 1);
         transformComponent.position.set(posX, posY, drawOrder);
         entity.add(transformComponent);
 
@@ -98,6 +103,30 @@ public class ECSEngine extends PooledEngine {
         final TypeComponent typeComponent = this.createComponent(TypeComponent.class);
         typeComponent.type = TypeComponent.OTHER;
         entity.add(typeComponent);
+
+        // State
+        final StateComponent stateComponent = this.createComponent(StateComponent.class);
+        // Starting state
+        stateComponent.state = StateComponent.STATE_UP;
+        stateComponent.isLooping = true;
+        entity.add(stateComponent);
+
+        // Texture
+        final TextureComponent textureComponent = this.createComponent(TextureComponent.class);
+        entity.add(textureComponent);
+
+        // Animation
+        final AnimationComponent animationComponent = this.createComponent(AnimationComponent.class);
+        Animation<TextureRegion> forwardAnim = new Animation<>(0.1f, ashAtlas.findRegions("forward"));
+        Animation<TextureRegion> backAnim = new Animation<>(0.1f, ashAtlas.findRegions("back"));
+        Animation<TextureRegion> leftAnim = new Animation<>(0.1f, ashAtlas.findRegions("left"));
+        Animation<TextureRegion> rightAnim = new Animation<>(0.1f, ashAtlas.findRegions("right"));
+
+        animationComponent.animations.put(StateComponent.STATE_UP, forwardAnim);
+        animationComponent.animations.put(StateComponent.STATE_DOWN, backAnim);
+        animationComponent.animations.put(StateComponent.STATE_LEFT, leftAnim);
+        animationComponent.animations.put(StateComponent.STATE_RIGHT, rightAnim);
+        entity.add(animationComponent);
 
         // Collision
         final CollisionComponent collisionComponent = this.createComponent(CollisionComponent.class);

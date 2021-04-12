@@ -4,7 +4,6 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.coffean.sinfonia.ecs.components.Box2DComponent;
 import com.coffean.sinfonia.ecs.components.PlayerComponent;
 import com.coffean.sinfonia.ecs.components.TransformComponent;
 import com.coffean.sinfonia.ecs.mappers.Mapper;

@@ -13,7 +13,8 @@ public class Assets {
     public final AssetManager manager = new AssetManager();
     // Textures
     public final String logoImage = "ui/logo.png";
-    public final String playerAtlas = "entities/atlas/entity.atlas";
+    public final String playerAtlas = "entities/player.atlas";
+    public final String ashAtlas = "entities/ashley.atlas";
 
     // Sounds
     public final String bossMusic = "sounds/Boss.mp3";
@@ -28,6 +29,7 @@ public class Assets {
 
     public void queueImages() {
         manager.load(playerAtlas, TextureAtlas.class);
+        manager.load(ashAtlas, TextureAtlas.class);
     }
 
     public void queueMusic() {

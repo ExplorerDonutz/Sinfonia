@@ -1,0 +1,90 @@
+
+ashley.png
+size: 256, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+back
+  rotate: false
+  xy: 8, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+back
+  rotate: false
+  xy: 48, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+back
+  rotate: false
+  xy: 88, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+forward
+  rotate: false
+  xy: 8, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+forward
+  rotate: false
+  xy: 48, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+forward
+  rotate: false
+  xy: 88, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+left
+  rotate: false
+  xy: 8, 64
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+left
+  rotate: false
+  xy: 48, 64
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+left
+  rotate: false
+  xy: 88, 64
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+right
+  rotate: false
+  xy: 8, 96
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+right
+  rotate: false
+  xy: 48, 96
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+right
+  rotate: false
+  xy: 88, 96
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3

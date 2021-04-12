@@ -1,12 +1,12 @@
 
 skin.png
-size: 4096,4096
+size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 checked
   rotate: false
-  xy: 2051, 2307
+  xy: 1027, 1283
   size: 32, 32
   split: 3, 3, 3, 3
   pad: 5, 4, 10, 6
@@ -24,7 +24,7 @@ defaultdown
   index: -1
 defaultover
   rotate: false
-  xy: 2051, 2341
+  xy: 1027, 1317
   size: 192, 92
   split: 11, 11, 11, 11
   pad: 18, 18, 18, 18
@@ -77,7 +77,7 @@ slider
   index: -1
 unchecked
   rotate: false
-  xy: 2245, 2401
+  xy: 1221, 1377
   size: 32, 32
   split: 3, 3, 3, 3
   pad: 5, 5, 5, 5
@@ -87,8 +87,8 @@ unchecked
 future_0
   rotate: false
   xy: 1, 385
-  size: 2048, 2048
-  orig: 2048, 2048
+  size: 1024, 1024
+  orig: 1024, 1024
   offset: 0, 0
   index: -1
 suture_0

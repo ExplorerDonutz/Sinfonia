@@ -1,4 +1,4 @@
-package com.coffean.sinfonia.screens;
+package com.coffean.sinfonia.view;
 
 import com.badlogic.gdx.Screen;
 import com.coffean.sinfonia.Sinfonia;

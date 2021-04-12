@@ -1,4 +1,4 @@
-package com.coffean.sinfonia.screens;
+package com.coffean.sinfonia.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -20,13 +20,12 @@ import com.coffean.sinfonia.loader.Assets;
 public class MainMenuScreen implements Screen {
 
     private final Sinfonia parent;
-    private final Assets assetManager;
-    protected Stage stage;
-    protected Skin skin;
+    protected final Stage stage;
+    protected final Skin skin;
 
     public MainMenuScreen(final Sinfonia parent) {
         this.parent = parent;
-        assetManager = parent.getAssetManager();
+        Assets assetManager = parent.getAssetManager();
         skin = assetManager.manager.get("ui/skin.json");
         stage = new Stage(new ScreenViewport(), parent.getBatch());
     }
@@ -81,7 +80,7 @@ public class MainMenuScreen implements Screen {
         });
 
         final Label title = new Label("Sinfonia", skin);
-        title.setFontScale(0.5f);
+        //title.setFontScale();
 
         root.add(title);
         root.row();

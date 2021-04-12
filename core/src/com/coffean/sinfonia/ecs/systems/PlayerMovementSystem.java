@@ -8,6 +8,7 @@ import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.ControllerMapping;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.math.Vector2;
+import com.coffean.sinfonia.ecs.components.AnimationComponent;
 import com.coffean.sinfonia.ecs.components.Box2DComponent;
 import com.coffean.sinfonia.ecs.components.PlayerComponent;
 import com.coffean.sinfonia.ecs.components.StateComponent;
@@ -31,28 +32,31 @@ public class PlayerMovementSystem extends IteratingSystem implements GameKeyInpu
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        Box2DComponent b2DComponent = Mapper.b2DCmpMapper.get(entity);
-        stateComponent = Mapper.stateCmpMapper.get(entity);
-        PlayerComponent playerComponent = Mapper.playerCmpMapper.get(entity);
-
+        final Box2DComponent b2DComponent = Mapper.b2DCmpMapper.get(entity);
+        final PlayerComponent playerComponent = Mapper.playerCmpMapper.get(entity);
+        final AnimationComponent animationComponent = Mapper.animationCmpMapper.get(entity);
         b2DComponent.body.setLinearVelocity(force.x * playerComponent.speed, force.y * playerComponent.speed);
 
         // Use abs to get non negative values to compare
         if (Math.abs(force.x) > Math.abs(force.y)) {
+            if (force.isZero()) {
+                // No movement idle
+                // TODO wait for Josh to complete idle animation
+            }
             if (force.x < 0) {
-                stateComponent.set(StateComponent.STATE_LEFT);
+                // TODO wait for Josh to complete Left animation
             }
 
             if (force.x > 0) {
-                stateComponent.set(StateComponent.STATE_RIGHT);
+                // TODO wait for Josh to complete Right animation
             }
         } else {
             if (force.y < 0) {
-                stateComponent.set(StateComponent.STATE_DOWN);
+                // TODO wait for Josh to complete Down animation
             }
 
             if (force.y > 0) {
-                stateComponent.set(StateComponent.STATE_UP);
+                // TODO wait for Josh to complete Up animation
             }
         }
     }
@@ -102,19 +106,15 @@ public class PlayerMovementSystem extends IteratingSystem implements GameKeyInpu
         switch (key) {
             case LEFT:
                 force.x = -1;
-                stateComponent.set(StateComponent.STATE_LEFT);
                 break;
             case RIGHT:
                 force.x = 1;
-                stateComponent.set(StateComponent.STATE_RIGHT);
                 break;
             case UP:
                 force.y = 1;
-                stateComponent.set(StateComponent.STATE_UP);
                 break;
             case DOWN:
                 force.y = -1;
-                stateComponent.set(StateComponent.STATE_DOWN);
                 break;
             default:
         }

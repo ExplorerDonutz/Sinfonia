@@ -1,4 +1,4 @@
-package com.coffean.sinfonia.screens;
+package com.coffean.sinfonia.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -38,14 +38,11 @@ public class SplashScreen implements Screen {
         assetManager.queueMap();
         assetManager.queueMusic();
 
-        stage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(1), Actions.delay(1), Actions.fadeOut(1), Actions.run(new Runnable() {
-            @Override
-            public void run() {
-                // Finish loading, then switch screens
-                assetManager.manager.finishLoading();
-                parent.changeScreen(Sinfonia.MENU);
-                dispose();
-            }
+        stage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(1), Actions.delay(1), Actions.fadeOut(1), Actions.run(() -> {
+            // Finish loading, then switch screens
+            assetManager.manager.finishLoading();
+            parent.changeScreen(Sinfonia.MENU);
+            dispose();
         })));
     }
 

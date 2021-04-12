@@ -1,4 +1,4 @@
-package com.coffean.sinfonia.screens;
+package com.coffean.sinfonia.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -32,7 +32,7 @@ public class GameScreen implements Screen, GameKeyInputListener {
     @Override
     public void show() {
         ecsEngine.createPlayer(100, 100, 32, 32, 0);
-        ecsEngine.createAshley(150, 150, 32, 32, 1);
+        ecsEngine.createAshley(150, 150, 20, 30, 1);
     }
 
     @Override

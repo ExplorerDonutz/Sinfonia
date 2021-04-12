@@ -3,7 +3,6 @@ package com.coffean.sinfonia.ecs.systems;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.coffean.sinfonia.ecs.components.AnimationComponent;
 import com.coffean.sinfonia.ecs.components.StateComponent;
 import com.coffean.sinfonia.ecs.components.TextureComponent;
@@ -21,7 +20,7 @@ public class AnimationSystem extends IteratingSystem {
         final StateComponent stateComp = Mapper.stateCmpMapper.get(entity);
         if (aniComp.animations.containsKey(stateComp.get())) {
             TextureComponent tex = Mapper.textureCmpMapper.get(entity);
-            tex.region = (TextureRegion) aniComp.animations.get(stateComp.get()).getKeyFrame(stateComp.time, stateComp.isLooping);
+            tex.region = aniComp.animations.get(stateComp.get()).getKeyFrame(stateComp.time, stateComp.isLooping);
         }
         stateComp.time += deltaTime;
     }

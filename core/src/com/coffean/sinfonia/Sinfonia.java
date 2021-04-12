@@ -8,8 +8,9 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.profiling.GLProfiler;
 import com.badlogic.gdx.physics.box2d.Box2D;
+import com.badlogic.gdx.utils.Array;
 import com.coffean.sinfonia.loader.Assets;
-import com.coffean.sinfonia.screens.*;
+import com.coffean.sinfonia.view.*;
 
 public class Sinfonia extends Game {
     public final static int MENU = 0;
@@ -43,7 +44,7 @@ public class Sinfonia extends Game {
         assetManager.queueSkin();
         assetManager.manager.finishLoading();
         setScreen(new SplashScreen(this));
-        for (Controller controller : Controllers.getControllers()) {
+        for (Controller controller : new Array.ArrayIterator<>(Controllers.getControllers())) {
             Gdx.app.log(TAG, controller.getName());
         }
     }
