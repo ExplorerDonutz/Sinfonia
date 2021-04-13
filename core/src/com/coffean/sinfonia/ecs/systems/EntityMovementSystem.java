@@ -20,7 +20,21 @@ public class EntityMovementSystem extends IteratingSystem {
 
         if (box2D.body.getLinearVelocity().equals(Vector2.Zero)) {
             // No movement, animation stays still
-            state.time = 1;
+            switch (state.state) {
+                case StateComponent.STATE_UP:
+                    state.state = StateComponent.STATE_UP_IDLE;
+                    break;
+                case StateComponent.STATE_DOWN:
+                    state.state = StateComponent.STATE_DOWN_IDLE;
+                    break;
+                case StateComponent.STATE_LEFT:
+                    state.state = StateComponent.STATE_LEFT_IDLE;
+                    break;
+                case StateComponent.STATE_RIGHT:
+                    state.state = StateComponent.STATE_RIGHT_IDLE;
+                    break;
+            }
+
         }
         if (box2D.body.getLinearVelocity().y > 0) {
             // Positive y velocity, switch to up animation state

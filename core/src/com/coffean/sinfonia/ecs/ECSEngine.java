@@ -121,11 +121,19 @@ public class ECSEngine extends PooledEngine {
         Animation<TextureRegion> backAnim = new Animation<>(0.1f, ashAtlas.findRegions("back"));
         Animation<TextureRegion> leftAnim = new Animation<>(0.1f, ashAtlas.findRegions("left"));
         Animation<TextureRegion> rightAnim = new Animation<>(0.1f, ashAtlas.findRegions("right"));
+        Animation<TextureRegion> forwardIdleAnim = new Animation<>(0.1f, ashAtlas.findRegions("forwardidle"));
+        Animation<TextureRegion> backIdleAnim = new Animation<>(0.1f, ashAtlas.findRegions("backidle"));
+        Animation<TextureRegion> leftIdleAnim = new Animation<>(0.1f, ashAtlas.findRegions("leftidle"));
+        Animation<TextureRegion> rightIdleAnim = new Animation<>(0.1f, ashAtlas.findRegions("rightidle"));
 
         animationComponent.animations.put(StateComponent.STATE_UP, forwardAnim);
         animationComponent.animations.put(StateComponent.STATE_DOWN, backAnim);
         animationComponent.animations.put(StateComponent.STATE_LEFT, leftAnim);
         animationComponent.animations.put(StateComponent.STATE_RIGHT, rightAnim);
+        animationComponent.animations.put(StateComponent.STATE_UP_IDLE, forwardIdleAnim);
+        animationComponent.animations.put(StateComponent.STATE_DOWN_IDLE, backIdleAnim);
+        animationComponent.animations.put(StateComponent.STATE_LEFT_IDLE, leftIdleAnim);
+        animationComponent.animations.put(StateComponent.STATE_RIGHT_IDLE, rightIdleAnim);
         entity.add(animationComponent);
 
         // Collision
