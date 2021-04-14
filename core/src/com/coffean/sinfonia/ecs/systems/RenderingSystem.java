@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.SortedIteratingSystem;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -66,12 +67,12 @@ public class RenderingSystem extends SortedIteratingSystem {
 
         viewport.apply(false);
         batch.setProjectionMatrix(camera.combined);
-        batch.enableBlending();
 
         mapRenderer.setView(camera);
         mapRenderer.render();
+        batch.enableBlending();
         batch.begin();
-
+        
         //Loop through each entity
         for (Entity entity : new Array.ArrayIterator<>(renderQueue)) {
             TextureComponent tex = texComponent.get(entity);
@@ -92,6 +93,7 @@ public class RenderingSystem extends SortedIteratingSystem {
         }
 
         batch.end();
+        batch.disableBlending();
 
         renderQueue.clear();
     }
