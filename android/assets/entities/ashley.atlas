@@ -1,180 +1,419 @@
+
 ashley.png
-	size: 2048, 64
-	repeat: none
+size: 2048, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
 back
-	index: 1
-	bounds: 2, 4, 32, 32
+  rotate: false
+  xy: 2, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
 back
-	index: 2
-	bounds: 36, 4, 32, 32
+  rotate: false
+  xy: 36, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
 back
-	index: 3
-	bounds: 70, 4, 32, 32
+  rotate: false
+  xy: 70, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
 backidle
-	index: 2
-	bounds: 104, 4, 32, 32
+  rotate: false
+  xy: 104, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
 backidle
-	index: 3
-	bounds: 138, 4, 32, 32
+  rotate: false
+  xy: 138, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
 backidle
-	index: 4
-	bounds: 172, 4, 32, 32
+  rotate: false
+  xy: 172, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
 backidle
-	index: 5
-	bounds: 206, 4, 32, 32
+  rotate: false
+  xy: 206, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 5
 backidle
-	index: 6
-	bounds: 240, 4, 32, 32
+  rotate: false
+  xy: 240, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 6
 backidle
-	index: 7
-	bounds: 274, 4, 32, 32
+  rotate: false
+  xy: 274, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 7
 backidle
-	index: 8
-	bounds: 308, 4, 32, 32
+  rotate: false
+  xy: 308, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 8
 backidle
-	index: 9
-	bounds: 342, 4, 32, 32
+  rotate: false
+  xy: 342, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 9
 backidle
-	index: 10
-	bounds: 376, 4, 32, 32
+  rotate: false
+  xy: 376, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 10
 backidle
-	index: 11
-	bounds: 410, 4, 32, 32
+  rotate: false
+  xy: 410, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 11
 backidle
-	index: 12
-	bounds: 444, 4, 32, 32
+  rotate: false
+  xy: 444, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 12
 backidle
-	index: 14
-	bounds: 478, 4, 32, 32
+  rotate: false
+  xy: 478, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 14
 backidle
-	index: 1
-	bounds: 478, 4, 32, 32
+  rotate: false
+  xy: 478, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
 backidle
-	index: 13
-	bounds: 478, 4, 32, 32
+  rotate: false
+  xy: 478, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 13
 forward
-	index: 1
-	bounds: 512, 4, 32, 32
+  rotate: false
+  xy: 512, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
 forward
-	index: 2
-	bounds: 546, 4, 32, 32
+  rotate: false
+  xy: 546, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
 forwardidle
-	index: 1
-	bounds: 546, 4, 32, 32
+  rotate: false
+  xy: 546, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
 forwardidle
-	index: 11
-	bounds: 546, 4, 32, 32
+  rotate: false
+  xy: 546, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 11
 forward
-	index: 3
-	bounds: 580, 4, 32, 32
+  rotate: false
+  xy: 580, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
 forwardidle
-	index: 2
-	bounds: 614, 4, 32, 32
+  rotate: false
+  xy: 614, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
 forwardidle
-	index: 3
-	bounds: 648, 4, 32, 32
+  rotate: false
+  xy: 648, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
 forwardidle
-	index: 4
-	bounds: 682, 4, 32, 32
+  rotate: false
+  xy: 682, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
 forwardidle
-	index: 5
-	bounds: 716, 4, 32, 32
+  rotate: false
+  xy: 716, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 5
 forwardidle
-	index: 6
-	bounds: 750, 4, 32, 32
+  rotate: false
+  xy: 750, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 6
 forwardidle
-	index: 7
-	bounds: 784, 4, 32, 32
+  rotate: false
+  xy: 784, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 7
 forwardidle
-	index: 8
-	bounds: 818, 4, 32, 32
+  rotate: false
+  xy: 818, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 8
 forwardidle
-	index: 9
-	bounds: 852, 4, 32, 32
+  rotate: false
+  xy: 852, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 9
 forwardidle
-	index: 10
-	bounds: 886, 4, 32, 32
+  rotate: false
+  xy: 886, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 10
 left
-	index: 1
-	bounds: 920, 4, 32, 32
+  rotate: false
+  xy: 920, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
 left
-	index: 2
-	bounds: 954, 4, 32, 32
+  rotate: false
+  xy: 954, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
 left
-	index: 3
-	bounds: 988, 4, 32, 32
+  rotate: false
+  xy: 988, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
 leftidle
-	index: 2
-	bounds: 1022, 4, 32, 32
+  rotate: false
+  xy: 1022, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
 leftidle
-	index: 11
-	bounds: 1022, 4, 32, 32
+  rotate: false
+  xy: 1022, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 11
 leftidle
-	index: 10
-	bounds: 1022, 4, 32, 32
+  rotate: false
+  xy: 1022, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
 leftidle
-	index: 1
-	bounds: 1022, 4, 32, 32
+  rotate: false
+  xy: 1022, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 10
 leftidle
-	index: 4
-	bounds: 1056, 4, 32, 32
+  rotate: false
+  xy: 1056, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
 leftidle
-	index: 9
-	bounds: 1056, 4, 32, 32
+  rotate: false
+  xy: 1056, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
 leftidle
-	index: 8
-	bounds: 1056, 4, 32, 32
+  rotate: false
+  xy: 1056, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 9
 leftidle
-	index: 3
-	bounds: 1056, 4, 32, 32
+  rotate: false
+  xy: 1056, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 8
 leftidle
-	index: 7
-	bounds: 1090, 4, 32, 32
+  rotate: false
+  xy: 1090, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 7
 leftidle
-	index: 5
-	bounds: 1090, 4, 32, 32
+  rotate: false
+  xy: 1090, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 5
 leftidle
-	index: 6
-	bounds: 1090, 4, 32, 32
+  rotate: false
+  xy: 1090, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 6
 right
-	index: 1
-	bounds: 1124, 4, 32, 32
+  rotate: false
+  xy: 1124, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
 right
-	index: 2
-	bounds: 1158, 4, 32, 32
+  rotate: false
+  xy: 1158, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
 right
-	index: 3
-	bounds: 1192, 4, 32, 32
+  rotate: false
+  xy: 1192, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
 rightidle
-	index: 2
-	bounds: 1226, 4, 32, 32
+  rotate: false
+  xy: 1226, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
 rightidle
-	index: 1
-	bounds: 1226, 4, 32, 32
+  rotate: false
+  xy: 1226, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 10
 rightidle
-	index: 11
-	bounds: 1226, 4, 32, 32
+  rotate: false
+  xy: 1226, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 11
 rightidle
-	index: 10
-	bounds: 1226, 4, 32, 32
+  rotate: false
+  xy: 1226, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
 rightidle
-	index: 4
-	bounds: 1260, 4, 32, 32
+  rotate: false
+  xy: 1260, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
 rightidle
-	index: 8
-	bounds: 1260, 4, 32, 32
+  rotate: false
+  xy: 1260, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
 rightidle
-	index: 9
-	bounds: 1260, 4, 32, 32
+  rotate: false
+  xy: 1260, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 8
 rightidle
-	index: 3
-	bounds: 1260, 4, 32, 32
+  rotate: false
+  xy: 1260, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 9
 rightidle
-	index: 5
-	bounds: 1294, 4, 32, 32
+  rotate: false
+  xy: 1294, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 5
 rightidle
-	index: 6
-	bounds: 1294, 4, 32, 32
+  rotate: false
+  xy: 1294, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 7
 rightidle
-	index: 7
-	bounds: 1294, 4, 32, 32
+  rotate: false
+  xy: 1294, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 6
