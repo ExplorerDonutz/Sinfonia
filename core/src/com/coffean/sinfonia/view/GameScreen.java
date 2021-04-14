@@ -2,13 +2,10 @@ package com.coffean.sinfonia.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.coffean.sinfonia.Sinfonia;
-import com.coffean.sinfonia.audio.AudioManager;
-import com.coffean.sinfonia.audio.AudioType;
 import com.coffean.sinfonia.ecs.ECSEngine;
 import com.coffean.sinfonia.handlers.WorldContactListener;
 import com.coffean.sinfonia.input.GameKeyInputListener;
@@ -21,7 +18,6 @@ import static com.coffean.sinfonia.utils.Constants.WIDTH;
 public class GameScreen implements Screen, GameKeyInputListener {
     private final World world;
     private final ECSEngine ecsEngine;
-    private final AudioManager audioManager;
 
     public GameScreen(final Sinfonia parent) {
         world = new World(new Vector2(0, 0), true);
@@ -30,12 +26,11 @@ public class GameScreen implements Screen, GameKeyInputListener {
         inputManager.addInputListener(this);
         Gdx.input.setInputProcessor(inputManager);
         ecsEngine = new ECSEngine(world, parent, inputManager);
-        audioManager = new AudioManager(parent);
+
     }
 
     @Override
     public void show() {
-        audioManager.playAudio(AudioType.BOSS);
         ecsEngine.createPlayer(100, 100, 32, 32, 0);
         ecsEngine.createAshley(150, 150, 20, 30, 1);
     }

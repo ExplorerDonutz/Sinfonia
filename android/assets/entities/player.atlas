@@ -1,6 +1,12 @@
 player.png
-	size: 64, 64
-	repeat: none
-	pma: true
+size: 32, 32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
 player
-	bounds: 2, 4, 32, 32
+  rotate: false
+  xy: 0, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

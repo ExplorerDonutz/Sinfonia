@@ -17,7 +17,7 @@ public class Assets {
     public final String ashAtlas = "entities/ashley.atlas";
 
     // Sounds
-    public final String bossMusic = "audio/boss.ogg";
+    public final String bossMusic = "sounds/Boss.mp3";
 
     //Skin
     public final String skin = "ui/skin.json";

@@ -19,7 +19,7 @@ public class EntityMovementSystem extends IteratingSystem {
         StateComponent state = Mapper.stateCmpMapper.get(entity);
 
         if (box2D.body.getLinearVelocity().equals(Vector2.Zero)) {
-            // No movement, use an idle animation in the same direction
+            // No movement, animation stays still
             switch (state.state) {
                 case StateComponent.STATE_UP:
                     state.state = StateComponent.STATE_UP_IDLE;
@@ -36,24 +36,18 @@ public class EntityMovementSystem extends IteratingSystem {
             }
 
         }
-
-        if (Math.abs(box2D.body.getLinearVelocity().x) > Math.abs(box2D.body.getLinearVelocity().y)) {
-            if (box2D.body.getLinearVelocity().x < 0) {
-                state.state = StateComponent.STATE_LEFT;
-            }
-            if (box2D.body.getLinearVelocity().x > 0) {
-                state.state = StateComponent.STATE_RIGHT;
-            }
+        if (box2D.body.getLinearVelocity().y > 0) {
+            // Positive y velocity, switch to up animation state
+            state.state = StateComponent.STATE_UP;
         }
-
-        if (Math.abs(box2D.body.getLinearVelocity().y) > Math.abs(box2D.body.getLinearVelocity().x)) {
-            if (box2D.body.getLinearVelocity().y > 0) {
-                // Positive y velocity, switch to up animation state
-                state.state = StateComponent.STATE_UP;
-            }
-            if (box2D.body.getLinearVelocity().y < 0) {
-                state.state = StateComponent.STATE_DOWN;
-            }
+        if (box2D.body.getLinearVelocity().y < 0) {
+            state.state = StateComponent.STATE_DOWN;
+        }
+        if (box2D.body.getLinearVelocity().x < 0) {
+            state.state = StateComponent.STATE_LEFT;
+        }
+        if (box2D.body.getLinearVelocity().x > 0) {
+            state.state = StateComponent.STATE_RIGHT;
         }
     }
 }
