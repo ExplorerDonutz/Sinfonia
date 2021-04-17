@@ -33,7 +33,9 @@ public class ECSEngine extends PooledEngine {
         this.addSystem(renderingSystem);
         this.addSystem(new PhysicsSystem(world));
         this.addSystem(new PlayerCameraSystem(renderingSystem));
-        this.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
+        if (Sinfonia.DEBUG) {
+            this.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
+        }
         this.addSystem(new PlayerMovementSystem(inputManager));
         this.addSystem(new EntityMovementSystem());
         this.addSystem(new CollisionSystem());

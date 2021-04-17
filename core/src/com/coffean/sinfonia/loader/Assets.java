@@ -42,7 +42,8 @@ public class Assets {
     }
 
     public void queueMap() {
+        TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
         manager.setLoader(TiledMap.class, new TmxMapLoader());
-        manager.load("map/map.tmx", TiledMap.class);
+        manager.load("map/map.tmx", TiledMap.class, params);
     }
 }

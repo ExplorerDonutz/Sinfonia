@@ -13,6 +13,7 @@ import com.coffean.sinfonia.loader.Assets;
 import com.coffean.sinfonia.view.*;
 
 public class Sinfonia extends Game {
+    public final static boolean DEBUG = false;
     public final static int MENU = 0;
     public final static int PREFERENCES = 1;
     public final static int GAME = 2;
@@ -36,8 +37,8 @@ public class Sinfonia extends Game {
         batch = new SpriteBatch();
         preferences = new GamePreferences();
         profiler = new GLProfiler(Gdx.graphics);
-        profiler.enable(); // Enable for debugging
-        if (profiler.isEnabled()) {
+        if (DEBUG) {
+            profiler.enable();
             Gdx.app.setLogLevel(Application.LOG_DEBUG);
         }
         assetManager.queueSplash();
@@ -53,7 +54,7 @@ public class Sinfonia extends Game {
     @Override
     public void render() {
         super.render();
-        if (profiler.isEnabled()) {
+        if (DEBUG) {
             Gdx.app.debug(TAG, "Bindings " + profiler.getTextureBindings());
             Gdx.app.debug(TAG, "Drawcalls " + profiler.getDrawCalls());
             profiler.reset();

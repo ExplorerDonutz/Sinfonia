@@ -1,6 +1,5 @@
 player.png
 	size: 64, 64
 	repeat: none
-	pma: true
 player
-	bounds: 2, 4, 32, 32
+	bounds: 1, 3, 32, 32

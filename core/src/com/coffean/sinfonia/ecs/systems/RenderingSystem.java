@@ -72,7 +72,6 @@ public class RenderingSystem extends SortedIteratingSystem {
         mapRenderer.render();
         batch.enableBlending();
         batch.begin();
-        
         //Loop through each entity
         for (Entity entity : new Array.ArrayIterator<>(renderQueue)) {
             TextureComponent tex = texComponent.get(entity);
@@ -91,10 +90,7 @@ public class RenderingSystem extends SortedIteratingSystem {
 
             batch.draw(tex.region, trans.position.x - originX, trans.position.y - originY, originX, originY, texWidth, texHeight, PixelsToMeters(trans.scale.x), PixelsToMeters(trans.scale.y), trans.rotation);
         }
-
         batch.end();
-        batch.disableBlending();
-
         renderQueue.clear();
     }
 
