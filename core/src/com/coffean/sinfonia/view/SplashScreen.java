@@ -23,9 +23,9 @@ public class SplashScreen implements Screen {
         assetManager = parent.getAssetManager();
         OrthographicCamera camera = new OrthographicCamera();
         FitViewport viewport = new FitViewport(Constants.WIDTH, Constants.HEIGHT, camera);
-        logo = assetManager.manager.get("ui/logo.png");
+        logo = assetManager.manager.get(Assets.logoImage);
 
-        stage = new Stage(viewport, parent.getBatch());
+        stage = new Stage(viewport);
         Table root = new Table();
         root.setFillParent(true);
         stage.addActor(root);

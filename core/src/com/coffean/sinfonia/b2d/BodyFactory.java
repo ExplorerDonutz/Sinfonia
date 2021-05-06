@@ -41,7 +41,9 @@ public class BodyFactory {
         return boxBody;
     }
 
-    public Body makeBox(float posx, float posy, float width, float height, BodyDef.BodyType bodyType, boolean fixedRotation, short catBits, short maskBits) {
+    public Body makeBox(float posx, float posy, float width, float height, BodyDef.BodyType bodyType, boolean fixedRotation, short catBits, short maskBits, boolean isSensor) {
+       //ToDo get proper position for game objects
+
         // create a definition
         BodyDef boxBodyDef = new BodyDef();
         boxBodyDef.type = bodyType;
@@ -58,6 +60,7 @@ public class BodyFactory {
         fixtureDef.shape = poly;
         fixtureDef.filter.categoryBits = catBits;
         fixtureDef.filter.maskBits = maskBits;
+        fixtureDef.isSensor = isSensor;
         boxBody.createFixture(fixtureDef);
         poly.dispose();
 

@@ -43,7 +43,7 @@ public class InputManager implements InputProcessor {
 
     public void notifyKeyDown(GameKeys gameKey) {
         keyState[gameKey.ordinal()] = true;
-        for (final GameKeyInputListener listener : listeners) {
+        for (final GameKeyInputListener listener : new Array.ArrayIterator<>(listeners)) {
             listener.keyPressed(this, gameKey);
         }
     }
@@ -63,7 +63,7 @@ public class InputManager implements InputProcessor {
 
     private void notifyKeyUp(GameKeys gameKey) {
         keyState[gameKey.ordinal()] = false;
-        for (final GameKeyInputListener listener : listeners) {
+        for (final GameKeyInputListener listener : new Array.ArrayIterator<>(listeners)) {
             listener.keyUp(this, gameKey);
         }
     }

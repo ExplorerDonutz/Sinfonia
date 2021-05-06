@@ -30,10 +30,9 @@ public class PreferencesScreen implements Screen {
 
         Table table = new Table();
         table.setFillParent(true);
-        //table.setDebug(true);
         stage.addActor(table);
 
-        Skin skin = assetManager.manager.get("ui/skin.json");
+        Skin skin = assetManager.manager.get(Assets.skin);
 
         // music volume
         final Slider volumeMusicSlider = new Slider(0f, 1f, 0.1f, false, skin);

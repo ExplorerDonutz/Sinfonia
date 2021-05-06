@@ -19,4 +19,5 @@ public final class Constants {
     public static final short BIT_PLAYER = 1 << 0;
     public static final short BIT_BOUNDARY = 1 << 1;
     public static final short BIT_ENTITY = 1 << 2;
+    public static final short BIT_SIGN = 1 << 3;
 }

@@ -13,39 +13,47 @@ import com.coffean.sinfonia.ecs.components.*;
 import com.coffean.sinfonia.ecs.systems.*;
 import com.coffean.sinfonia.input.InputManager;
 import com.coffean.sinfonia.loader.Assets;
+import com.coffean.sinfonia.view.GameScreen;
 
 import static com.coffean.sinfonia.utils.Constants.*;
 
 public class ECSEngine extends PooledEngine {
     public final RenderingSystem renderingSystem;
+    private final PlayerMovementSystem playerMovementSystem;
     private final BodyFactory bodyFactory;
     private final TextureAtlas playerAtlas;
     private final TextureAtlas ashAtlas;
 
-    public ECSEngine(final World world, final Sinfonia parent, InputManager inputManager) {
+    public ECSEngine(final World world, final Sinfonia parent, InputManager inputManager, GameScreen gameScreen) {
         bodyFactory = BodyFactory.getInstance(world);
         final Assets assetManager = parent.getAssetManager();
         playerAtlas = assetManager.manager.get("entities/player.atlas");
         ashAtlas = assetManager.manager.get("entities/ashley.atlas");
-        renderingSystem = new RenderingSystem(parent, world);
+        renderingSystem = new RenderingSystem(parent);
+        playerMovementSystem = new PlayerMovementSystem(inputManager);
 
         this.addSystem(new AnimationSystem());
         this.addSystem(renderingSystem);
         this.addSystem(new PhysicsSystem(world));
-        this.addSystem(new PlayerCameraSystem(renderingSystem));
+        this.addSystem(new PlayerCameraSystem(parent));
         if (Sinfonia.DEBUG) {
-            this.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
+            this.addSystem(new PhysicsDebugSystem(world, parent.getCamera()));
         }
-        this.addSystem(new PlayerMovementSystem(inputManager));
+        this.addSystem(playerMovementSystem);
         this.addSystem(new EntityMovementSystem());
         this.addSystem(new CollisionSystem());
+        this.addSystem(new PlayerInteractionSystem(inputManager, gameScreen, this));
+    }
+
+    public PlayerMovementSystem getMovementSystem() {
+        return playerMovementSystem;
     }
 
     public void createPlayer(int posX, int posY, int width, int height, int drawOrder) {
         final Entity player = this.createEntity();
         // Box2D
         final Box2DComponent box2DComponent = this.createComponent(Box2DComponent.class);
-        box2DComponent.body = bodyFactory.makeBox(posX, posY, width, height, BodyDef.BodyType.DynamicBody, true, BIT_PLAYER, (short) (BIT_ENTITY | BIT_BOUNDARY));
+        box2DComponent.body = bodyFactory.makeBox(posX, posY, width, height, BodyDef.BodyType.DynamicBody, true, BIT_PLAYER, (short) (BIT_ENTITY | BIT_BOUNDARY | BIT_SIGN), false);
         box2DComponent.body.setUserData(player);
         player.add(box2DComponent);
 
@@ -81,6 +89,10 @@ public class ECSEngine extends PooledEngine {
         final CollisionComponent collisionComponent = this.createComponent(CollisionComponent.class);
         player.add(collisionComponent);
 
+        // Interaction
+        final InteractionComponent interactionComponent = this.createComponent(InteractionComponent.class);
+        player.add(interactionComponent);
+
         // Add player to engine
         this.addEntity(player);
     }
@@ -90,8 +102,11 @@ public class ECSEngine extends PooledEngine {
 
         // Box2D
         final Box2DComponent box2DComponent = this.createComponent(Box2DComponent.class);
-        box2DComponent.body = bodyFactory.makeBox(posX, posY, width, height, BodyDef.BodyType.DynamicBody, true, BIT_ENTITY, (short) (BIT_PLAYER | BIT_BOUNDARY));
+        box2DComponent.body = bodyFactory.makeBox(posX, posY, width, height, BodyDef.BodyType.DynamicBody, true, BIT_ENTITY, (short) (BIT_PLAYER | BIT_BOUNDARY), false);
+        //ToDo Do this a different way :I
+        box2DComponent.sensorBody = bodyFactory.makeBox(posX / 2f, posY / 2f, width * 2, height * 2, BodyDef.BodyType.DynamicBody, true, BIT_ENTITY, (short) (BIT_PLAYER | BIT_BOUNDARY), true);
         box2DComponent.body.setUserData(entity);
+        box2DComponent.sensorBody.setUserData(entity);
         entity.add(box2DComponent);
 
         // Transform
@@ -144,5 +159,52 @@ public class ECSEngine extends PooledEngine {
 
         // Adds test entity to engine
         this.addEntity(entity);
+    }
+
+    public void createGameObject(float posX, float posY, float width, float height, int type, TextureRegion textureRegion) {
+        //ToDo complete game object creation
+        final Entity gameObject = this.createEntity();
+
+        // Type
+        final TypeComponent typeComponent = this.createComponent(TypeComponent.class);
+        typeComponent.type = TypeComponent.GAMEOBJECT;
+        gameObject.add(typeComponent);
+
+        // Gameobject
+        final GameObjectComponent gameObjectComponent = this.createComponent(GameObjectComponent.class);
+        gameObjectComponent.type = type;
+        gameObject.add(gameObjectComponent);
+
+        //Box2D
+        final Box2DComponent box2DComponent = this.createComponent(Box2DComponent.class);
+        switch (type) {
+            case GameObjectComponent.TYPE_SIGN:
+                box2DComponent.body = bodyFactory.makeBox((posX + (textureRegion.getRegionWidth() / 2f)) * 2, (posY + (textureRegion.getRegionHeight() / 2f)) * 2, width * 2, height * 2, BodyDef.BodyType.StaticBody, true, BIT_SIGN, BIT_PLAYER, true);
+                break;
+        }
+        box2DComponent.body.setUserData(gameObject);
+        gameObject.add(box2DComponent);
+
+        // Transform
+        final TransformComponent transformComponent = this.createComponent(TransformComponent.class);
+        transformComponent.scale.set(1,1);
+        transformComponent.position.set(posX, posY, 1);
+        gameObject.add(transformComponent);
+
+        //Texture
+        final TextureComponent textureComponent = this.createComponent(TextureComponent.class);
+        textureComponent.region = textureRegion;
+        gameObject.add(textureComponent);
+
+        // Collision
+        final CollisionComponent collisionComponent = this.createComponent(CollisionComponent.class);
+        gameObject.add(collisionComponent);
+
+        // Interaction
+        //Game object also get interaction since static bodies always initiate contact
+        final InteractionComponent interactionComponent = this.createComponent(InteractionComponent.class);
+        gameObject.add(interactionComponent);
+
+        this.addEntity(gameObject);
     }
 }

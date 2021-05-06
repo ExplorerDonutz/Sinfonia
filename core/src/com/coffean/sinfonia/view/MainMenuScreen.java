@@ -26,8 +26,8 @@ public class MainMenuScreen implements Screen {
     public MainMenuScreen(final Sinfonia parent) {
         this.parent = parent;
         Assets assetManager = parent.getAssetManager();
-        skin = assetManager.manager.get("ui/skin.json");
-        stage = new Stage(new ScreenViewport(), parent.getBatch());
+        skin = assetManager.manager.get(Assets.skin);
+        stage = new Stage(new ScreenViewport());
     }
 
     @Override
@@ -121,7 +121,6 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void dispose() {
-        skin.dispose();
         stage.dispose();
     }
 }

@@ -39,6 +39,11 @@ public class PhysicsSystem extends IntervalIteratingSystem {
             TransformComponent transComponent = Mapper.transformCmpMapper.get(entity);
             Box2DComponent bodyComponent = Mapper.b2DCmpMapper.get(entity);
             Vector2 position = bodyComponent.body.getPosition();
+
+            if(bodyComponent.sensorBody != null) {
+                bodyComponent.sensorBody.setTransform(position, bodyComponent.body.getAngle());
+            }
+
             transComponent.position.x = position.x;
             transComponent.position.y = position.y;
             transComponent.rotation = bodyComponent.body.getAngle() * MathUtils.radiansToDegrees;

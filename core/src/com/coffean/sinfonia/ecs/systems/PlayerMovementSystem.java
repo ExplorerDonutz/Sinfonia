@@ -63,7 +63,6 @@ public class PlayerMovementSystem extends IteratingSystem implements GameKeyInpu
 
     @Override
     public void connected(Controller controller) {
-
     }
 
     @Override

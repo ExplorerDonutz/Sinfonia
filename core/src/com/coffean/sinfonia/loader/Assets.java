@@ -12,15 +12,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class Assets {
     public final AssetManager manager = new AssetManager();
     // Textures
-    public final String logoImage = "ui/logo.png";
-    public final String playerAtlas = "entities/player.atlas";
-    public final String ashAtlas = "entities/ashley.atlas";
+    public static String logoImage = "ui/logo.png";
+    public static String playerAtlas = "entities/player.atlas";
+    public static String ashAtlas = "entities/ashley.atlas";
+
+    // Map
+    public static String map = "map/map.tmx";
 
     // Sounds
-    public final String bossMusic = "audio/boss.ogg";
+    public static final String bossMusic = "audio/boss.ogg";
 
     //Skin
-    public final String skin = "ui/skin.json";
+    public static String skin = "ui/skin.json";
 
     // Load splash separately since it's the first screen
     public void queueSplash() {
@@ -44,6 +47,6 @@ public class Assets {
     public void queueMap() {
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
         manager.setLoader(TiledMap.class, new TmxMapLoader());
-        manager.load("map/map.tmx", TiledMap.class, params);
+        manager.load(map, TiledMap.class, params);
     }
 }

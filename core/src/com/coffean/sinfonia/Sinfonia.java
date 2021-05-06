@@ -5,15 +5,17 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.profiling.GLProfiler;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.utils.Array;
 import com.coffean.sinfonia.loader.Assets;
 import com.coffean.sinfonia.view.*;
 
+import static com.coffean.sinfonia.utils.Constants.*;
+
 public class Sinfonia extends Game {
-    public final static boolean DEBUG = false;
+    public final static boolean DEBUG = true;
     public final static int MENU = 0;
     public final static int PREFERENCES = 1;
     public final static int GAME = 2;
@@ -27,7 +29,7 @@ public class Sinfonia extends Game {
     private GameScreen gameScreen;
     private CreditsScreen creditsScreen;
     private GamePreferences preferences;
-    private GLProfiler profiler;
+    private OrthographicCamera camera;
 
     @Override
     public void create() {
@@ -36,9 +38,7 @@ public class Sinfonia extends Game {
         assetManager = new Assets();
         batch = new SpriteBatch();
         preferences = new GamePreferences();
-        profiler = new GLProfiler(Gdx.graphics);
         if (DEBUG) {
-            profiler.enable();
             Gdx.app.setLogLevel(Application.LOG_DEBUG);
         }
         assetManager.queueSplash();
@@ -48,17 +48,15 @@ public class Sinfonia extends Game {
         for (Controller controller : new Array.ArrayIterator<>(Controllers.getControllers())) {
             Gdx.app.log(TAG, controller.getName());
         }
+
+        camera = new OrthographicCamera(WIDTH / PPM, HEIGHT / PPM);
+        camera.position.set(WIDTH / PPM / SCALE, HEIGHT / PPM / SCALE, 0);
     }
 
 
     @Override
     public void render() {
         super.render();
-        if (DEBUG) {
-            Gdx.app.debug(TAG, "Bindings " + profiler.getTextureBindings());
-            Gdx.app.debug(TAG, "Drawcalls " + profiler.getDrawCalls());
-            profiler.reset();
-        }
     }
 
     @Override
@@ -101,6 +99,10 @@ public class Sinfonia extends Game {
 
     public SpriteBatch getBatch() {
         return batch;
+    }
+
+    public OrthographicCamera getCamera() {
+        return camera;
     }
 
     public void setSplashWorker(SplashWorker splashWorker) {

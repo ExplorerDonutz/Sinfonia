@@ -59,10 +59,10 @@ forward
 	index: 2
 	bounds: 545, 3, 32, 32
 forwardidle
-	index: 11
+	index: 1
 	bounds: 545, 3, 32, 32
 forwardidle
-	index: 1
+	index: 11
 	bounds: 545, 3, 32, 32
 forward
 	index: 3
@@ -107,10 +107,10 @@ leftidle
 	index: 2
 	bounds: 1021, 3, 32, 32
 leftidle
-	index: 1
+	index: 11
 	bounds: 1021, 3, 32, 32
 leftidle
-	index: 11
+	index: 1
 	bounds: 1021, 3, 32, 32
 leftidle
 	index: 10
@@ -149,22 +149,22 @@ rightidle
 	index: 2
 	bounds: 1225, 3, 32, 32
 rightidle
-	index: 1
+	index: 11
 	bounds: 1225, 3, 32, 32
 rightidle
 	index: 10
 	bounds: 1225, 3, 32, 32
 rightidle
-	index: 11
+	index: 1
 	bounds: 1225, 3, 32, 32
 rightidle
 	index: 4
 	bounds: 1259, 3, 32, 32
 rightidle
-	index: 9
+	index: 3
 	bounds: 1259, 3, 32, 32
 rightidle
-	index: 3
+	index: 9
 	bounds: 1259, 3, 32, 32
 rightidle
 	index: 8
