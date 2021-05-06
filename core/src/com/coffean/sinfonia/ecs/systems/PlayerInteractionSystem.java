@@ -46,23 +46,29 @@ public class PlayerInteractionSystem extends IteratingSystem implements GameKeyI
 
                 switch (type.type) {
                     case TypeComponent.OTHER:
-                        final Dialog dialog2 = new Dialog("", skin);
-                        final Label label2 = new Label("Wow, you can talk to Ashley now!", skin, "dialog");
+                        // Check so that player can't accidentally make multiple dialog boxes
+                        if (!table.hasChildren()) {
+                            final Dialog dialog2 = new Dialog("", skin);
+                            final Label label2 = new Label("Wow, you can talk to Ashley now!", skin, "dialog");
 
-                        label2.setFontScale(0.5f);
-                        dialog2.text(label2);
-                        table.add(dialog2).expand().left().bottom().fillX();
+                            label2.setFontScale(0.5f);
+                            dialog2.text(label2);
+                            table.add(dialog2).expand().left().bottom().fillX();
+                        }
                         break;
                     case TypeComponent.GAMEOBJECT:
                         final GameObjectComponent gameObject = Mapper.gameObjCmpMapper.get(collision.collisionEntity);
                         switch (gameObject.type) {
                             case GameObjectComponent.TYPE_SIGN:
-                                final Dialog dialog = new Dialog("", skin);
-                                final Label label = new Label("Can confirm this works!", skin, "dialog");
+                                // Check so that player can't accidentally make multiple dialog boxes
+                                if (!table.hasChildren()) {
+                                    final Dialog dialog = new Dialog("", skin);
+                                    final Label label = new Label("Can confirm this works!", skin, "dialog");
 
-                                label.setFontScale(0.5f);
-                                dialog.text(label);
-                                table.add(dialog).expand().left().bottom().fillX();
+                                    label.setFontScale(0.5f);
+                                    dialog.text(label);
+                                    table.add(dialog).expand().left().bottom().fillX();
+                                }
                                 break;
 
                         }
