@@ -5,7 +5,7 @@
 ___
 TBD
 
-##Credits
+## Credits
 ___
 * **Gurbo** - Story
 * **Coenobita** - Art/Assets
